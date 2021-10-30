@@ -21,14 +21,14 @@ SCHEDULE_INTERVAL = "@daily"
 DAG_OWNER_NAME = "bayu"
 ALERT_EMAIL_ADDRESSES = ['bwiratmo91@gmail.com']
 DEFAULT_MAX_LOG_AGE_IN_DAYS = Variable.get(
-    "airflow_log_cleanup__max_log_age_in_days", 0
+    "airflow_log_cleanup__max_log_age_in_days", 1
 )
 
 ENABLE_DELETE = True
 NUMBER_OF_WORKERS = 1
 DIRECTORIES_TO_DELETE = [BASE_LOG_FOLDER]
 ENABLE_DELETE_CHILD_LOG = Variable.get(
-    "airflow_log_cleanup__enable_delete_child_log", "False"
+    "airflow_log_cleanup__enable_delete_child_log", "true"
 )
 LOG_CLEANUP_PROCESS_LOCK_FILE = "/tmp/airflow_log_cleanup_worker.lock"
 logging.info("ENABLE_DELETE_CHILD_LOG  " + ENABLE_DELETE_CHILD_LOG)
