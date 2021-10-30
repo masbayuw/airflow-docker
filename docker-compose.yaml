@@ -49,12 +49,23 @@ x-airflow-common:
     AIRFLOW__CORE__FERNET_KEY: ''
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
     AIRFLOW__CORE__LOAD_EXAMPLES: 'true'
+    AIRFLOW__LOGGING__BASE_LOG_FOLDER: '/opt/airflow/logs'
+    AIRFLOW__SMTP__SMTP_STARTTLS: 'true'
+    AIRFLOW__SMTP__SMTP_HOST: smtp.gmail.com
+    AIRFLOW__SMTP__SMTP_PORT: 587
+    AIRFLOW__SMTP__SMTP_USER: bwiratmo91@gmail.com
+    AIRFLOW__SMTP__SMTP_PASSWORD: eaclzwcrhqmjnwwc
+    AIRFLOW__SMTP__SMTP_MAIL_FROM: bwiratmo91@gmail.com
+
+
+    
   volumes:
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
     - ./plugins:/opt/airflow/plugins
     - ./scripts:/opt/airflow/scripts
-    - ./config/airflow.cfg:/opt/airflow/airflow.cfg
+    - ./config:/opt/airflow/config
+    - ./airflow.cfg:/opt/airflow/airflow.cfg  
 
   user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
   depends_on:
@@ -135,3 +146,7 @@ services:
 
 volumes:
   postgres-db-volume:
+
+# Email connection to use
+
+email_conn_id: smtp_default
